@@ -1,0 +1,296 @@
+/* Estilos generales */
+:root {
+  --primary-color: #bfbf6c;
+  --primary-dark: #9e9e5a;
+  --primary-light: #d8d89a;
+  --text-color: #333;
+  --text-light: #fff;
+  --bg-color: #f9f9f9;
+  --navbar-height: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed; /* Cambiar de sticky a fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  z-index: 1000; /* Mantener este valor */
+  transition: left 0.3s ease; /* Añadir transición */
+}
+/* Añadir esta nueva regla para cuando el sidebar está abierto */
+.sidebar-open .navbar {
+  left: 280px;
+  width: calc(100% - 280px);
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+}
+
+.nav-item {
+  margin-left: 2rem;
+}
+
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--text-light);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--text-light);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-cart {
+  margin-left: 2rem;
+}
+
+.cart-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.cart-button:hover {
+  color: var(--text-light);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.mobile-menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: var(--primary-dark);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.5s ease;
+    z-index: 1000;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin: 1.5rem 0;
+  }
+
+  .nav-link {
+    font-size: 1.3rem;
+  }
+
+  .nav-cart {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+}
+
+/* Estilos para el botón del sidebar */
+.sidebar-toggle-icon {
+  display: none; /* Oculto por defecto en desktop */
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar-toggle-icon:hover {
+  color: var(--text-light);
+}
+
+/* Mostrar solo en pantallas grandes donde el menú móvil no está visible */
+@media (min-width: 769px) {
+  .sidebar-toggle-icon {
+    display: block;
+  }
+  
+  .mobile-menu-icon {
+    display: none;
+  }
+}
+
+/* Asegurar que el logo no se mueva cuando el sidebar está abierto */
+.navbar-logo {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.content-shifted .navbar-logo {
+  margin-left: 0; /* Ajusta si necesitas compensar el sidebar */
+}
+
+/* Mantén todos tus estilos existentes y añade estos: */
+
+.sidebar-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+}
+
+.sidebar-toggle-icon:hover {
+  color: var(--primary-dark);
+  transform: scale(1.1);
+}
+
+/* Asegurar que los botones no se superpongan */
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  flex-grow: 1;
+}
+
+/* Ajustes para el menú móvil */
+.mobile-menu-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle-icon {
+    display: none;
+  }
+  
+  .mobile-menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 80px; /* Ajusta según altura de tu navbar */
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: var(--primary-dark);
+    transition: all 0.5s ease;
+    z-index: 998;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+    padding: 2rem;
+  }
+  
+  .nav-item {
+    margin: 1rem 0;
+  }
+}
